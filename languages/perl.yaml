@@ -1,0 +1,30 @@
+name: Perl
+level: High
+safety: Moderate
+description: A highly capable, feature-rich programming language with over 30 years of development.
+paradigm: Multi-paradigm (procedural, object-oriented, functional)
+performance: Moderate
+memory managers:
+  - Reference counting (automatic)
+concurrency:
+  - Threads
+  - Forking
+control level: Medium
+abstraction level: High
+platform support: Very High (Ubiquitous on Unix)
+interoperability: High (XS, Inline::C)
+sandboxingORexecutionSafety: Moderate
+memorySafety: High
+errorHandling: eval, die, Try::Tiny
+compilationStrategy: Interpreted
+typingSystem: Dynamic (Strong)
+buildComplexityORcompilationEase: High (CPAN is powerful)
+startupANDruntimeOverhead: Moderate
+ffi: high
+ecosystemSize: large
+uses:
+  - System administration
+  - Text processing (Regex king)
+  - Web development (Legacy)
+  - Bio-informatics
+  - Glue code

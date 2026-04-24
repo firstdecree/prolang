@@ -1,0 +1,28 @@
+name: Batch
+level: Low
+safety: Low
+description: A command-line interpreter and scripting language for OS/2 and Windows.
+paradigm: Imperative, procedural
+performance: Moderate
+memory managers:
+  - OS-managed (no explicit language-level memory management)
+concurrency:
+  - Limited (backgrounding, START command; not built-in robust concurrency)
+control level: Moderate
+abstraction level: Low
+platform support: Low (Windows only)
+interoperability: High (CLI)
+sandboxingORexecutionSafety: Low
+memorySafety: Moderate
+errorHandling: ERRORLEVEL
+compilationStrategy: Interpreted
+typingSystem: Weak (String)
+buildComplexityORcompilationEase: High (No build step)
+startupANDruntimeOverhead: Low
+ffi: poor
+ecosystemSize: small
+uses:
+  - Windows task automation
+  - Simple installers and setup scripts
+  - System administration
+  - Legacy automation and quick command sequences

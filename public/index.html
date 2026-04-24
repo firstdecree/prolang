@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProLang</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" href="assets/img/logo.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+    <style>
+        :root {
+            --bg-color: #f0f2f5;
+            --panel-bg: #ffffff;
+            --text-main: #1d1d1f;
+            --text-muted: #515154;
+            --border-color: #e5e5ea;
+            --accent: #0071e3;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color); color: var(--text-main);
+            display: flex; height: 100vh; overflow: hidden; line-height: 1.5;
+        }
+
+        .sidebar {
+            width: 350px; background-color: var(--panel-bg); border-right: 1px solid var(--border-color);
+            display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+            padding: 2rem; z-index: 10; box-shadow: 2px 0 10px rgba(0,0,0,0.02);
+            overflow-y: auto;
+        }
+        .logo-container { margin-bottom: 1rem; }
+        .logo-container img {
+            max-width: 150px; height: auto; border-radius: 20px;
+            box-shadow: var(--shadow); transition: transform 0.3s ease;
+        }
+        .logo-container img:hover { transform: scale(1.05); }
+        .tagline {
+            font-size: 1.1rem; font-weight: 600; text-align: center; color: var(--text-muted);
+            letter-spacing: -0.02em; margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex; gap: 1rem; margin-bottom: 2rem; justify-content: center;
+        }
+        .social-links a {
+            color: var(--text-muted); transition: color 0.2s, transform 0.2s;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .social-links a:hover {
+            color: var(--text-main); transform: translateY(-2px);
+        }
+
+        .filters-container {
+            width: 100%; text-align: left; border-top: 1px solid var(--border-color); padding-top: 1.5rem;
+        }
+        .filters-container h3 { margin-bottom: 1rem; color: var(--text-main); font-size: 1.1rem; }
+        .filters-container label {
+            display: block; font-size: 0.85rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.3rem;
+        }
+        .filters-container select {
+            width: 100%; padding: 0.6rem; border: 1px solid var(--border-color); border-radius: 6px;
+            margin-bottom: 1rem; font-family: inherit; font-size: 0.9rem; background-color: var(--bg-color);
+            outline: none; transition: border-color 0.2s;
+        }
+        .filters-container select:focus { border-color: var(--accent); }
+
+        .main-content {
+            flex: 1; overflow-y: auto; padding: 3rem; scroll-behavior: smooth; position: relative;
+        }
+        .main-content::-webkit-scrollbar { width: 8px; }
+        .main-content::-webkit-scrollbar-track { background: transparent; }
+        .main-content::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .main-content::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        .header { margin-bottom: 2rem; }
+        .header h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.03em; color: var(--text-main); }
+        .loading { display: flex; justify-content: center; align-items: center; height: 200px; font-size: 1.2rem; color: var(--text-muted); }
+
+        .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
+        .card {
+            background-color: var(--panel-bg); border-radius: 16px; padding: 1.5rem;
+            box-shadow: var(--shadow); border: 1px solid var(--border-color);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden;
+            display: flex; flex-direction: column; cursor: pointer;
+        }
+        .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); border-color: #d1d5db; }
+        .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
+        .card-title { font-size: 1.25rem; font-weight: 700; color: var(--text-main); }
+        .card-badge {
+            background-color: #f1f5f9; color: var(--text-muted); padding: 0.25rem 0.6rem;
+            border-radius: 999px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
+        }
+        .card-badge.level-badge { background-color: #e0f2fe; color: #0369a1; }
+        .card-desc { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem; flex-grow: 1; }
+        .card-meta { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
+        .meta-tag {
+            font-size: 0.75rem; padding: 0.2rem 0.5rem; border-radius: 4px;
+            background-color: #f8fafc; border: 1px solid #e2e8f0; color: #475569; display: flex; align-items: center;
+        }
+        .meta-tag span { font-weight: 600; margin-right: 0.3rem; color: #334155; }
+        
+        .no-results { text-align: center; color: var(--text-muted); padding: 3rem; font-size: 1.2rem; display: none; }
+
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(0,0,0,0.5); backdrop-filter: blur(5px);
+            display: flex; justify-content: center; align-items: center;
+            z-index: 100; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+        }
+        .modal-overlay.active { opacity: 1; pointer-events: all; }
+        .modal {
+            background: var(--panel-bg); width: 90%; max-width: 800px; max-height: 90vh;
+            border-radius: 16px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.2);
+            position: relative; display: flex; flex-direction: column;
+            transform: scale(0.95) translateY(20px); transition: transform 0.3s ease;
+        }
+        .modal-overlay.active .modal { transform: scale(1) translateY(0); }
+        .modal-close {
+            position: absolute; top: 1.5rem; right: 1.5rem; background: #f1f5f9;
+            border: none; width: 36px; height: 36px; border-radius: 50%;
+            font-size: 1.5rem; color: var(--text-muted); cursor: pointer;
+            display: flex; justify-content: center; align-items: center; transition: background 0.2s;
+        }
+        .modal-close:hover { background: #e2e8f0; color: var(--text-main); }
+        .modal-content { padding: 2.5rem; overflow-y: auto; }
+        .modal-content::-webkit-scrollbar { width: 8px; }
+        .modal-content::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        
+        .modal-header { margin-bottom: 2rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1.5rem; }
+        .modal-header h2 { font-size: 2.5rem; color: var(--text-main); margin-bottom: 0.5rem; }
+        .modal-header p { font-size: 1.1rem; color: var(--text-muted); }
+        
+        .modal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem; }
+        .modal-field { margin-bottom: 1.5rem; }
+        .modal-field strong {
+            display: block; font-size: 0.8rem; text-transform: uppercase;
+            letter-spacing: 0.05em; color: #64748b; margin-bottom: 0.4rem;
+        }
+        .modal-field div { font-size: 1rem; color: var(--text-main); line-height: 1.6; }
+        .modal-field ul { margin-left: 1.2rem; color: var(--text-main); font-size: 1rem; line-height: 1.6; }
+
+        @media (max-width: 768px) {
+            body { flex-direction: column; overflow: auto; }
+            .sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--border-color); padding: 1.5rem; }
+            .filters-container { margin-top: 1rem; }
+            .main-content { padding: 1.5rem; overflow-y: visible; }
+            .modal-grid { grid-template-columns: 1fr; gap: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="logo-container">
+            <img src="/assets/img/logo.png" alt="ProLang Logo" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'150\' height=\'150\' viewBox=\'0 0 150 150\'><rect width=\'150\' height=\'150\' fill=\'%23e2e8f0\'/><text x=\'50%\' y=\'50%\' font-family=\'sans-serif\' font-size=\'20\' fill=\'%2364748b\' dominant-baseline=\'middle\' text-anchor=\'middle\'>Logo</text></svg>'">
+        </div>
+        <div class="tagline">Know programming languages well.</div>
+        
+        <div class="social-links">
+            <a href="https://firstdecree.org/" target="_blank" title="First Decree">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+            </a>
+            <a href="https://github.com/firstdecree" target="_blank" title="GitHub">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+            </a>
+        </div>
+        
+        <div class="filters-container">
+            <h3>Filters</h3>
+            <label for="filter-level">Level</label>
+            <select id="filter-level"><option value="all">All Levels</option></select>
+            
+            <label for="filter-safety">Safety</label>
+            <select id="filter-safety"><option value="all">All Safeties</option></select>
+            
+            <label for="filter-performance">Performance</label>
+            <select id="filter-performance"><option value="all">All Performances</option></select>
+            
+            <label for="filter-ecosystem">Ecosystem Size</label>
+            <select id="filter-ecosystem"><option value="all">All Sizes</option></select>
+        </div>
+    </div>
+
+    <div class="main-content" id="main-content">
+        <div class="header">
+            <h1>Explorer</h1>
+        </div>
+        <div id="loading" class="loading">Discovering languages...</div>
+        <div id="no-results" class="no-results">No languages match the selected filters.</div>
+        <div id="cards-grid" class="cards-grid"></div>
+    </div>
+
+    <div id="modal-overlay" class="modal-overlay">
+        <div class="modal">
+            <button class="modal-close" id="modal-close">&times;</button>
+            <div class="modal-content" id="modal-content-body">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Variables
+        var allLanguages = []
+        const levelWeights = {
+            "very low": 1, "low": 2, "low to medium": 3, "medium": 4,
+            "medium to high": 5, "high": 6, "very high": 7, "maximal": 8
+        }
+
+        // Functions
+        function getLevelWeight(levelStr) {
+            if (!levelStr) return 4
+            const norm = String(levelStr).toLowerCase().trim()
+            return levelWeights[norm] || 4
+        }
+
+        // Main
+        async function init() {
+            try {
+                const listRes = await fetch("/api/languages")
+                if (!listRes.ok) throw new Error("Failed to fetch languages list")
+                const listData = await listRes.json()
+                const files = listData.files || []
+
+                for (const fileUrl of files) {
+                    try {
+                        const fileRes = await fetch(fileUrl)
+                        const yamlText = await fileRes.text()
+                        const data = jsyaml.load(yamlText)
+                        if (data && data.name) allLanguages.push(data)
+                    } catch (err) {
+                        console.error(`Error parsing ${fileUrl}:`, err)
+                    }
+                }
+
+                allLanguages.sort((a, b) => {
+                    const weightA = getLevelWeight(a.level)
+                    const weightB = getLevelWeight(b.level)
+                    if (weightA !== weightB) return weightA - weightB
+                    return String(a.name).localeCompare(String(b.name))
+                })
+
+                populateFilters()
+                renderCards(allLanguages)
+                setupEventListeners()
+
+            } catch (err) {
+                console.error("Initialization error:", err)
+                document.getElementById("loading").innerText = "Error loading data. Make sure the server is running."
+            }
+        }
+
+        function populateFilters() {
+            const levels = new Set(), safeties = new Set(), performances = new Set(), ecosystems = new Set()
+            
+            allLanguages.forEach((l) => {
+                if (l.level) levels.add(l.level)
+                if (l.safety) safeties.add(l.safety)
+                if (l.performance) performances.add(l.performance)
+                if (l.ecosystemSize) ecosystems.add(l.ecosystemSize)
+            })
+
+            const sortAndAppend = (set, selectId) => {
+                const select = document.getElementById(selectId)
+                Array.from(set).sort().forEach((val) => {
+                    const opt = document.createElement("option")
+                    opt.value = val
+                    opt.textContent = val
+                    select.appendChild(opt)
+                })
+            }
+
+            sortAndAppend(levels, "filter-level")
+            sortAndAppend(safeties, "filter-safety")
+            sortAndAppend(performances, "filter-performance")
+            sortAndAppend(ecosystems, "filter-ecosystem")
+        }
+
+        function applyFilters() {
+            const lvl = document.getElementById("filter-level").value
+            const sft = document.getElementById("filter-safety").value
+            const perf = document.getElementById("filter-performance").value
+            const eco = document.getElementById("filter-ecosystem").value
+
+            const filtered = allLanguages.filter((l) => {
+                const matchLvl = (lvl === "all") || (l.level === lvl)
+                const matchSft = (sft === "all") || (l.safety === sft)
+                const matchPerf = (perf === "all") || (l.performance === perf)
+                const matchEco = (eco === "all") || (l.ecosystemSize === eco)
+                return matchLvl && matchSft && matchPerf && matchEco
+            })
+
+            renderCards(filtered)
+        }
+
+        function setupEventListeners() {
+            ["filter-level", "filter-safety", "filter-performance", "filter-ecosystem"].forEach((id) => {
+                document.getElementById(id).addEventListener("change", applyFilters)
+            })
+
+            const overlay = document.getElementById("modal-overlay")
+            const closeBtn = document.getElementById("modal-close")
+            
+            closeBtn.addEventListener("click", () => overlay.classList.remove("active"))
+            overlay.addEventListener("click", (e) => {
+                if (e.target === overlay) overlay.classList.remove("active")
+            })
+            
+            document.addEventListener("keydown", (e) => {
+                if (e.key === "Escape") overlay.classList.remove("active")
+            })
+        }
+
+        function renderCards(languages) {
+            const grid = document.getElementById("cards-grid")
+            const noResults = document.getElementById("no-results")
+            document.getElementById("loading").style.display = "none"
+            grid.innerHTML = ""
+            
+            if (languages.length === 0) {
+                noResults.style.display = "block"
+                return
+            }
+            noResults.style.display = "none"
+
+            languages.forEach((lang, index) => {
+                const card = document.createElement("div")
+                card.className = "card"
+                card.dataset.index = allLanguages.indexOf(lang)
+
+                let safetyColor = "#94a3b8"
+                let safetyStr = (lang.safety || "").toLowerCase()
+                if (safetyStr.includes("high") || safetyStr.includes("very high")) safetyColor = "#10b981"
+                if (safetyStr.includes("low") || safetyStr.includes("very low")) safetyColor = "#ef4444"
+                if (safetyStr.includes("moderate")) safetyColor = "#f59e0b"
+
+                card.innerHTML = `
+                    <div class="card-header">
+                        <div class="card-title">${lang.name || "Unknown"}</div>
+                        <div class="card-badge level-badge" title="Level">${lang.level || "Unknown"}</div>
+                    </div>
+                    <div class="card-desc">${lang.description || "No description available."}</div>
+                    <div class="card-meta">
+                        <div class="meta-tag" style="border-left: 3px solid ${safetyColor}">
+                            <span>Safety:</span> ${lang.safety || "N/A"}
+                        </div>
+                        <div class="meta-tag"><span>FFI:</span> ${lang.ffi || "N/A"}</div>
+                        <div class="meta-tag"><span>Ecosystem:</span> ${lang.ecosystemSize || "N/A"}</div>
+                        <div class="meta-tag"><span>Paradigm:</span> ${lang.paradigm ? lang.paradigm.split(",")[0] : "N/A"}</div>
+                    </div>
+                `
+                
+                card.addEventListener("click", () => openModal(lang))
+                grid.appendChild(card)
+            })
+        }
+
+        function renderList(items) {
+            if (!items || !items.length) return "<div>None</div>"
+            return `<ul>${items.map(i => `<li>${i}</li>`).join("")}</ul>`
+        }
+
+        function openModal(lang) {
+            const content = document.getElementById("modal-content-body")
+            
+            content.innerHTML = `
+                <div class="modal-header">
+                    <h2>${lang.name || "Unknown Language"}</h2>
+                    <p>${lang.description || "No description available."}</p>
+                </div>
+                <div class="modal-grid">
+                    <div>
+                        <div class="modal-field"><strong>Level</strong><div>${lang.level || "N/A"}</div></div>
+                        <div class="modal-field"><strong>Safety</strong><div>${lang.safety || "N/A"}</div></div>
+                        <div class="modal-field"><strong>Performance</strong><div>${lang.performance || "N/A"}</div></div>
+                        <div class="modal-field"><strong>Paradigm</strong><div>${lang.paradigm || "N/A"}</div></div>
+                        <div class="modal-field"><strong>Control Level</strong><div>${lang.control_level || lang["control level"] || "N/A"}</div></div>
+                        <div class="modal-field"><strong>Abstraction Level</strong><div>${lang.abstraction_level || lang["abstraction level"] || "N/A"}</div></div>
+                        <div class="modal-field"><strong>Typing System</strong><div>${lang.typingSystem || "N/A"}</div></div>
+                        <div class="modal-field"><strong>Ecosystem Size</strong><div>${lang.ecosystemSize || "N/A"}</div></div>
+                    </div>
+                    <div>
+                        <div class="modal-field"><strong>Platform Support</strong><div>${lang["platform support"] || lang.platform_support || "N/A"}</div></div>
+                        <div class="modal-field"><strong>Interoperability & FFI</strong><div>${lang.interoperability || "N/A"} (FFI: ${lang.ffi || "N/A"})</div></div>
+                        <div class="modal-field"><strong>Compilation Strategy</strong><div>${lang.compilationStrategy || "N/A"}</div></div>
+                        <div class="modal-field"><strong>Memory Managers</strong>${renderList(lang["memory managers"] || lang.memory_managers)}</div>
+                        <div class="modal-field"><strong>Concurrency</strong>${renderList(lang.concurrency)}</div>
+                        <div class="modal-field"><strong>Error Handling</strong><div>${lang.errorHandling || "N/A"}</div></div>
+                        <div class="modal-field"><strong>Execution / Memory Safety</strong><div>Exec: ${lang.sandboxingORexecutionSafety || "N/A"} | Mem: ${lang.memorySafety || "N/A"}</div></div>
+                        <div class="modal-field"><strong>Uses</strong>${renderList(lang.uses)}</div>
+                    </div>
+                </div>
+                <div class="modal-field">
+                    <strong>Build / Startup Information</strong>
+                    <div>Build Complexity: ${lang.buildComplexityORcompilationEase || "N/A"} <br> Startup Overhead: ${lang.startupANDruntimeOverhead || "N/A"}</div>
+                </div>
+            `
+            
+            document.getElementById("modal-overlay").classList.add("active")
+        }
+
+        document.addEventListener("DOMContentLoaded", init)
+    </script>
+</body>
+</html>

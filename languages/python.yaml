@@ -1,0 +1,31 @@
+name: Python
+level: High
+safety: High
+description: A high-level, general-purpose programming language known for readability and versatility.
+paradigm: Multi-paradigm (procedural, object-oriented, functional)
+performance: Moderate
+memory managers:
+  - Automatic garbage collection (reference counting + cyclic GC)
+concurrency:
+  - Threads (GIL limits CPU-bound parallelism)
+  - Async (asyncio, coroutines)
+  - Multiprocessing (separate processes for true parallelism)
+control level: Medium
+abstraction level: High
+platform support: High (Windows, Linux, macOS, Web via Pyodide)
+interoperability: High (C Extensions, APIs)
+sandboxingORexecutionSafety: Moderate
+memorySafety: High
+errorHandling: Exceptions (try/except)
+compilationStrategy: Interpreted (Bytecode)
+typingSystem: Dynamic (Strong, with optional type hints)
+buildComplexityORcompilationEase: High (No build step)
+startupANDruntimeOverhead: Moderate
+ffi: excellent
+ecosystemSize: massive
+uses:
+  - Web development
+  - Automation and scripting
+  - Data science and machine learning
+  - Backend services and APIs
+  - Prototyping and general-purpose programming

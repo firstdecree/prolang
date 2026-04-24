@@ -1,0 +1,29 @@
+name: Assembly
+level: Very Low
+safety: Low
+description: A low-level programming language that is a strong correspondence between the language and the architecture's machine code instructions.
+paradigm: Imperative, unstructured
+performance: Very High (Maximal)
+memory managers:
+  - Manual (Direct hardware/OS abstraction)
+concurrency:
+  - Hardware interrupts
+  - OS threads (via syscalls)
+control level: Maximal
+abstraction level: Very Low
+platform support: Specific to CPU Architecture (x86, ARM, RISC-V)
+interoperability: High (C ABI, direct system calls)
+sandboxingORexecutionSafety: Low
+memorySafety: Low
+errorHandling: Flags, manual checking
+compilationStrategy: Assembler (Direct translation to machine code)
+typingSystem: Untyped (Bytes/Words/Registers)
+buildComplexityORcompilationEase: High (Fast assembly, simple tooling)
+startupANDruntimeOverhead: Low (None)
+ffi: excellent
+ecosystemSize: small
+uses:
+  - Operating system kernels
+  - Bootloaders
+  - Reverse engineering
+  - Extreme performance optimization

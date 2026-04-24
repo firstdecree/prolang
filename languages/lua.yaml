@@ -1,0 +1,28 @@
+name: Lua
+level: Medium to High
+safety: High
+description: A lightweight, high-level, multi-paradigm programming language designed primarily for embedded use in applications.
+paradigm: Multi-paradigm (procedural, object-oriented, functional, data-driven)
+performance: High (especially with LuaJIT)
+memory managers:
+  - Incremental garbage collection
+concurrency:
+  - Coroutines
+control level: Medium
+abstraction level: High
+platform support: Very High (Highly portable C ANSI)
+interoperability: Very High (C API is a core feature)
+sandboxingORexecutionSafety: High (Easy to sandbox)
+memorySafety: High
+errorHandling: pcall/xpcall (Error returning)
+compilationStrategy: Interpreted (Bytecode) / JIT (LuaJIT)
+typingSystem: Dynamic (Strong)
+buildComplexityORcompilationEase: High (Trivial to integrate)
+startupANDruntimeOverhead: Low
+ffi: excellent
+ecosystemSize: medium
+uses:
+  - Game scripting
+  - Embedded scripting
+  - Configuration files
+  - Extensibility for C/C++ applications

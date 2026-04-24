@@ -1,0 +1,28 @@
+name: JavaScript
+level: High
+safety: High
+description: A lightweight, interpreted, or just-in-time compiled programming language with first-class functions.
+paradigm: Event-driven, functional, imperative, object-oriented
+performance: High (in modern JIT engines like V8)
+memory managers:
+  - Garbage collection
+concurrency:
+  - Event loop (single-threaded async)
+  - Web Workers / Worker threads
+control level: Medium
+abstraction level: High
+platform support: Very High (Web browsers, Node.js, Deno, Bun)
+interoperability: High (Web APIs, C++ addons in Node)
+sandboxingORexecutionSafety: High (in browser environments)
+memorySafety: High
+errorHandling: Exceptions (try/catch), Promises
+compilationStrategy: JIT
+typingSystem: Dynamic (Weak)
+buildComplexityORcompilationEase: High (Often uses complex build tools like Webpack/Vite for web)
+startupANDruntimeOverhead: Low to Moderate
+ffi: high
+ecosystemSize: massive
+uses:
+  - Frontend web development
+  - Backend servers (Node.js)
+  - Cross-platform desktop and mobile apps

@@ -1,0 +1,27 @@
+name: CSS
+level: High
+safety: High
+description: Cascading Style Sheets, a style sheet language used for describing the presentation of a document written in HTML or XML.
+paradigm: Declarative
+performance: High (Render engine optimized)
+memory managers:
+  - Managed by browser rendering engine
+concurrency:
+  - N/A (Render thread is typically single-threaded with GPU acceleration)
+control level: Low
+abstraction level: High
+platform support: Very High (Web browsers)
+interoperability: High (HTML, JS)
+sandboxingORexecutionSafety: High
+memorySafety: High
+errorHandling: Silent fallback (Ignores invalid rules)
+compilationStrategy: Interpreted (Parsed by browser)
+typingSystem: N/A (Declarative rules)
+buildComplexityORcompilationEase: High (No build step inherently, preprocessors add complexity)
+startupANDruntimeOverhead: Low
+ffi: poor
+ecosystemSize: massive
+uses:
+  - Web page styling
+  - UI design
+  - Animations and transitions

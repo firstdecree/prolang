@@ -1,0 +1,31 @@
+name: C#
+level: High
+safety: High
+description: A modern, object-oriented, and type-safe programming language developed by Microsoft.
+paradigm: Multi-paradigm (object-oriented, functional, imperative, declarative)
+performance: High (JIT compiled via .NET)
+memory managers:
+  - Automatic garbage collection (CLR)
+concurrency:
+  - Task Parallel Library (TPL)
+  - Async/Await
+  - Threads
+control level: Medium
+abstraction level: High
+platform support: Very High (Cross-platform via .NET Core/5+)
+interoperability: Very High (COM, P/Invoke, C++ Interop)
+sandboxingORexecutionSafety: High
+memorySafety: High
+errorHandling: Exceptions
+compilationStrategy: JIT / AOT (ReadyToRun)
+typingSystem: Static (Strong)
+buildComplexityORcompilationEase: High (Excellent tooling with Visual Studio/MSBuild)
+startupANDruntimeOverhead: Moderate
+ffi: high
+ecosystemSize: massive
+uses:
+  - Enterprise software
+  - Game development (Unity)
+  - Web services (ASP.NET)
+  - Desktop applications (WPF/WinForms)
+  - Mobile apps (MAUI/Xamarin)

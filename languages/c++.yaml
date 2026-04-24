@@ -1,0 +1,30 @@
+name: C++
+level: Low
+safety: Low
+description: A general-purpose programming language created as an extension of the C programming language.
+paradigm: Multi-paradigm (procedural, object-oriented, generic, functional)
+performance: Very High
+memory managers:
+  - Manual (new/delete)
+  - Smart Pointers (RAII)
+concurrency:
+  - Threads (std::thread)
+  - Async (std::async, Coroutines in C++20)
+control level: Very High
+abstraction level: Moderate to High
+platform support: Very High
+interoperability: Very High (C compatible)
+sandboxingORexecutionSafety: Low
+memorySafety: Low (manual memory management, raw pointers)
+errorHandling: Exceptions (try/catch), Error Codes
+compilationStrategy: AOT
+typingSystem: Static (Strong)
+buildComplexityORcompilationEase: Low (Complex build systems, slow compilation for large codebases)
+startupANDruntimeOverhead: Low
+ffi: excellent
+ecosystemSize: massive
+uses:
+  - Systems programming
+  - Game development
+  - High-performance applications
+  - Embedded systems

@@ -1,0 +1,28 @@
+name: C
+level: Low
+safety: Low
+description: A general-purpose, procedural computer programming language supporting structured programming.
+paradigm: Procedural, imperative
+performance: Very High
+memory managers:
+  - Manual (malloc/free)
+concurrency:
+  - Threads (pthreads, OS threads)
+control level: Very High
+abstraction level: Low
+platform support: Very High (Ubiquitous)
+interoperability: Very High (Universal ABI)
+sandboxingORexecutionSafety: Low
+memorySafety: Low (manual memory management, raw pointers)
+errorHandling: Error Codes
+compilationStrategy: AOT
+typingSystem: Static (Weak)
+buildComplexityORcompilationEase: Moderate (Simple build systems, fast compilation)
+startupANDruntimeOverhead: Low
+ffi: excellent
+ecosystemSize: massive
+uses:
+  - Operating systems
+  - Embedded systems
+  - Kernels and drivers
+  - Performance-critical infrastructure

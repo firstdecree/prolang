@@ -1,0 +1,31 @@
+name: Java
+level: High
+safety: High
+description: A high-level, class-based, object-oriented programming language designed to have as few implementation dependencies as possible.
+paradigm: Object-oriented, structured, functional
+performance: High (Highly optimized JIT/JVM)
+memory managers:
+  - Automatic garbage collection (various GCs like G1, ZGC)
+concurrency:
+  - Threads
+  - Executor Framework
+  - Virtual Threads (Project Loom)
+control level: Medium
+abstraction level: High
+platform support: Very High (JVM runs on almost everything)
+interoperability: Medium (JNI, JNA, Project Panama)
+sandboxingORexecutionSafety: High (JVM Sandbox)
+memorySafety: High
+errorHandling: Exceptions (Checked and Unchecked)
+compilationStrategy: JIT (Bytecode) / AOT (GraalVM)
+typingSystem: Static (Strong)
+buildComplexityORcompilationEase: Moderate (Maven, Gradle)
+startupANDruntimeOverhead: Moderate to High (JVM warmup)
+ffi: medium
+ecosystemSize: massive
+uses:
+  - Enterprise applications
+  - Android development
+  - Big data processing
+  - Server-side backends
+  - Financial services

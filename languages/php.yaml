@@ -1,0 +1,30 @@
+name: PHP
+level: High
+safety: Moderate
+description: A popular general-purpose scripting language that is especially suited to web development.
+paradigm: Multi-paradigm (imperative, object-oriented, functional)
+performance: Moderate to High (with JIT in PHP 8)
+memory managers:
+  - Automatic garbage collection (reference counting + cyclic GC)
+concurrency:
+  - Processes (FastCGI)
+  - Fibers (PHP 8.1)
+  - Parallel extension
+control level: Low to Medium
+abstraction level: High
+platform support: Very High (Web servers everywhere)
+interoperability: Medium (C extensions)
+sandboxingORexecutionSafety: Moderate
+memorySafety: High
+errorHandling: Exceptions and Error classes
+compilationStrategy: Interpreted (Zend VM) / JIT
+typingSystem: Dynamic (Strong with strict types option)
+buildComplexityORcompilationEase: High (Composer is excellent)
+startupANDruntimeOverhead: Low to Moderate
+ffi: medium
+ecosystemSize: massive
+uses:
+  - Web development (Server-side)
+  - Content Management Systems (WordPress, Drupal)
+  - E-commerce platforms
+  - Backend APIs

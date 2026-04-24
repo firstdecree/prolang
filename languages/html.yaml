@@ -1,0 +1,27 @@
+name: HTML
+level: High
+safety: High
+description: HyperText Markup Language, the standard markup language for documents designed to be displayed in a web browser.
+paradigm: Declarative
+performance: High (Render engine optimized)
+memory managers:
+  - Managed by browser rendering engine (DOM)
+concurrency:
+  - N/A
+control level: Low
+abstraction level: High
+platform support: Very High (Web browsers)
+interoperability: High (CSS, JS)
+sandboxingORexecutionSafety: High
+memorySafety: High
+errorHandling: Graceful degradation (Browser attempts to fix or ignore errors)
+compilationStrategy: Interpreted (Parsed by browser)
+typingSystem: N/A (Markup elements)
+buildComplexityORcompilationEase: High (No build step inherently)
+startupANDruntimeOverhead: Low
+ffi: poor
+ecosystemSize: massive
+uses:
+  - Web page structuring
+  - Email templates
+  - UI layouts for web apps

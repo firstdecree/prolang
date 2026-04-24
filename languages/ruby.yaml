@@ -1,0 +1,31 @@
+name: Ruby
+level: High
+safety: High
+description: A dynamic, open source programming language with a focus on simplicity and productivity.
+paradigm: Object-oriented, functional, imperative
+performance: Moderate (Improved with YJIT)
+memory managers:
+  - Automatic garbage collection (Generational, Mark & Sweep)
+concurrency:
+  - Ractors (Parallelism)
+  - Fibers (Concurrency)
+  - Threads (GVL)
+control level: Low to Medium
+abstraction level: Very High
+platform support: High (Windows, Linux, macOS)
+interoperability: High (C extensions via Fiddle/FFI)
+sandboxingORexecutionSafety: Moderate
+memorySafety: High
+errorHandling: Exceptions (begin/rescue)
+compilationStrategy: Interpreted / JIT (YJIT)
+typingSystem: Dynamic (Strong)
+buildComplexityORcompilationEase: High (Bundler/RubyGems)
+startupANDruntimeOverhead: Moderate
+ffi: high
+ecosystemSize: large
+uses:
+  - Web development (Ruby on Rails)
+  - Automation and scripting
+  - DevOps tooling (Chef, Puppet)
+  - Prototyping
+  - Backend services

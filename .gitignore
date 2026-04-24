@@ -1,0 +1,5 @@
+extra
+node_modules
+pnpm-lock.yaml
+.vercel
+vercel-prod

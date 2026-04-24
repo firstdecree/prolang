@@ -1,0 +1,30 @@
+name: Bash (Shell Script)
+level: Medium
+safety: Low to Moderate
+description: A Unix shell and command language used for automation and system administration.
+paradigm: Imperative, procedural, scripting
+performance: Moderate
+memory managers:
+  - OS-managed (no explicit language-level memory management)
+concurrency:
+  - Processes (background jobs)
+  - Pipelines
+  - Job control (fg/bg)
+control level: Moderate
+abstraction level: Low to Medium
+platform support: High (Linux, macOS, Windows via WSL)
+interoperability: High (CLI, Subprocesses)
+sandboxingORexecutionSafety: Low
+memorySafety: Moderate
+errorHandling: Exit codes, set -e
+compilationStrategy: Interpreted
+typingSystem: Weak/String-based
+buildComplexityORcompilationEase: High (No build step)
+startupANDruntimeOverhead: Moderate (Forking processes is expensive)
+ffi: medium
+ecosystemSize: large
+uses:
+  - Unix/Linux system administration
+  - Automation and DevOps scripts
+  - Build and deployment pipelines
+  - Text processing and glue code

@@ -1,0 +1,31 @@
+name: Go
+level: Medium to High
+safety: High
+description: An open-source programming language that makes it easy to build simple, reliable, and efficient software.
+paradigm: Imperative, concurrent, object-oriented (interfaces)
+performance: High
+memory managers:
+  - Automatic garbage collection (low-latency GC)
+concurrency:
+  - Goroutines
+  - Channels
+  - Select statement
+control level: Medium
+abstraction level: Medium to High
+platform support: High (Windows, Linux, macOS, BSD)
+interoperability: Medium (cgo can be complex and slow)
+sandboxingORexecutionSafety: High
+memorySafety: High
+errorHandling: Explicit return values (error)
+compilationStrategy: AOT (Static linking)
+typingSystem: Static (Strong, with structural typing)
+buildComplexityORcompilationEase: Excellent (Very fast compilation)
+startupANDruntimeOverhead: Low
+ffi: medium
+ecosystemSize: massive
+uses:
+  - Cloud infrastructure
+  - Microservices
+  - Networking tools
+  - Backend development
+  - CLI tools

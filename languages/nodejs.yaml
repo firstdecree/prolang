@@ -1,0 +1,30 @@
+name: Node.js
+level: High
+safety: High
+description: A JavaScript runtime built on Chrome's V8 JavaScript engine for server-side development.
+paradigm: Event-driven, asynchronous, multi-paradigm (procedural, functional, OOP)
+performance: High (I/O-bound tasks); Moderate for CPU-bound without worker threads
+memory managers:
+  - V8 garbage collection (generational / incremental GC)
+concurrency:
+  - Event loop (single-threaded async)
+  - Worker threads (for CPU-bound parallelism)
+  - Cluster (multiple processes)
+control level: Medium
+abstraction level: High
+platform support: High (Windows, Linux, macOS)
+interoperability: High (C++ Addons, APIs, WebAssembly)
+sandboxingORexecutionSafety: Low (Unless using modules like 'vm')
+memorySafety: High
+errorHandling: Exceptions (try/catch), Error callbacks, Promise Rejections
+compilationStrategy: JIT (V8)
+typingSystem: Dynamic (Strong)
+buildComplexityORcompilationEase: High (No build step for vanilla JS)
+startupANDruntimeOverhead: Moderate (V8 initialization)
+ffi: high
+ecosystemSize: massive
+uses:
+  - Web servers and APIs
+  - Real-time applications (WebSockets)
+  - DevOps tooling and CLI apps
+  - Serverless functions and microservices

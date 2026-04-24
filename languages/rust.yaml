@@ -1,0 +1,29 @@
+name: Rust
+level: Low
+safety: High
+description: A systems programming language focusing on safety, speed, and concurrency.
+paradigm: Multi-paradigm (imperative, functional, object-oriented)
+performance: Very High
+memory managers:
+  - Ownership model (Borrow Checker)
+concurrency:
+  - Threads
+  - Async/Await
+control level: Very High
+abstraction level: Low
+platform support: High (Windows, Linux, macOS, WebAssembly)
+interoperability: High (C FFI)
+sandboxingORexecutionSafety: High
+memorySafety: High
+errorHandling: Result/Option
+compilationStrategy: AOT (LLVM)
+typingSystem: Static (Strong)
+buildComplexityORcompilationEase: Moderate (Cargo is great but compilation is slow)
+startupANDruntimeOverhead: Low
+ffi: good
+ecosystemSize: large
+uses:
+  - Systems programming
+  - WebAssembly
+  - High-performance backends
+  - Embedded systems

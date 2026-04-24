@@ -1,0 +1,30 @@
+name: PowerShell
+level: High
+safety: Moderate
+description: A task automation and configuration management framework from Microsoft.
+paradigm: Object-based scripting, imperative, pipeline-oriented
+performance: Moderate
+memory managers:
+  - .NET garbage collection (managed by CLR)
+concurrency:
+  - Jobs (background jobs)
+  - Runspaces (thread-like concurrency)
+  - Parallel foreach (ForEach-Object -Parallel)
+control level: Medium
+abstraction level: High
+platform support: High (Windows, Linux, macOS via PowerShell Core)
+interoperability: Very High (.NET, COM, CLI)
+sandboxingORexecutionSafety: Moderate (Execution Policies)
+memorySafety: High
+errorHandling: Exceptions (try/catch)
+compilationStrategy: Interpreted (JIT via .NET)
+typingSystem: Dynamic/Static (Object-based)
+buildComplexityORcompilationEase: High (No build step)
+startupANDruntimeOverhead: Moderate to High (CLR startup)
+ffi: high
+ecosystemSize: medium
+uses:
+  - Windows system administration and automation
+  - Configuration management and DevOps
+  - Cross-platform scripting (PowerShell Core)
+  - Interacting with .NET APIs and Windows components
