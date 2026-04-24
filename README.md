@@ -1,7 +1,7 @@
 # ProLang
 > **Programming Languages Website Directory.**
 
-It's a website with a collection of many well-known programming languages, along with important information such as safety, level, abstraction, paradigm, memory management and more. And yes, not-languages like HTML and CSS are deliberately included as well?
+It's a website with a collection of many well-known programming languages, along with important information such as safety, level, abstraction, paradigm, memory management and more. And yes, not-languages like HTML and CSS are deliberately included as well.
 
 # ⚙️ Installations
 ## Github
