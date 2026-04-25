@@ -24,6 +24,9 @@ pnpm install
 node index.js
 ```
 
+# 🔗 Related
+- [Best Programming Language](https://ncryptsion.vercel.app/blogs/best-programming-language) - Why is there no “best” programming language?
+
 # 🌟 Patrons
 <table border="1">
     <tr>
